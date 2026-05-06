@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    @apply bg-navy-950 text-brand-gray-primary font-sans antialiased selection:bg-brand-violet/20 selection:text-brand-violet transition-colors duration-500;
+    min-height: 100vh;
+    background-color: #0B0F1A;
+  }
+
+  body {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.15) 0px, transparent 50%),
+      radial-gradient(at 50% 0%, rgba(79, 70, 229, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%);
+    background-attachment: fixed;
+    animation: breathing-bg 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes breathing-bg {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3e%3cfilter id='noiseFilter'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3e%3c/filter%3e%3crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3e%3c/svg%3e");
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+  }
+}
+
+@layer components {
+  /* Common glass effect */
+  .glass-panel {
+    @apply bg-white/[0.04] backdrop-blur-3xl border border-white/[0.08] shadow-[0_20px_80px_rgba(0,0,0,0.5)] transition-all duration-500;
+  }
+
+  .glass-panel-hover {
+    @apply hover:bg-white/[0.06] hover:border-white/[0.12] hover:-translate-y-2 hover:shadow-[0_30px_100px_rgba(124,58,237,0.15)];
+  }
+
+  .premium-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  /* Form Elements */
+  .premium-input {
+    @apply w-full bg-white/[0.03] backdrop-blur-3xl border border-white/[0.08] text-brand-gray-primary rounded-2xl px-6 py-4 
+           focus:outline-none focus:ring-[12px] focus:ring-brand-violet/5 focus:border-brand-violet/30
+           transition-all duration-500 placeholder:text-brand-gray-muted shadow-2xl;
+  }
+
+  .premium-button {
+    @apply relative flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-brand-violet via-brand-indigo to-brand-cyan text-white font-black text-xs uppercase tracking-[0.2em] transition-all duration-500 shadow-lg shadow-brand-violet/20 hover:scale-[1.05] hover:shadow-brand-violet/40 hover:-rotate-1 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 overflow-hidden;
+  }
+
+  .premium-button::after {
+    @apply content-[''] absolute top-0 -left-full w-full h-full bg-white/20 -skew-x-12 transition-all duration-700;
+  }
+
+  .premium-button:hover::after {
+    @apply left-full;
+  }
+
+  .secondary-button {
+    @apply flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-white/[0.04] backdrop-blur-3xl border border-white/[0.1] text-brand-gray-primary hover:bg-white/[0.08] hover:border-brand-violet/40 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] active:scale-95 transition-all duration-300 disabled:opacity-50;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F1A;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-violet/20 rounded-full border-2 border-navy-950 hover:bg-brand-violet/40 transition-colors;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600/80;
+}

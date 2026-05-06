@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv/
+
+# Database
+*.db
+*.sqlite3
+sql_app.db
+sql_app_v2.db
+
+# Logs
+*.log
+test_logs.txt
+backend/test_log*.txt
+backend/err.txt
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.eslintcache
+
+# OS / Editors
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Project Specific
+backend/scratch/
+backend/app/__pycache__/
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Local configuration
+.env.local
+.env.*.local
