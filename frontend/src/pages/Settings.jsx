@@ -68,7 +68,7 @@ const Settings = () => {
         >
           <div className="w-full bg-brand-violet/10 border border-brand-violet/30 text-brand-violet px-6 py-4 rounded-2xl font-mono text-sm inline-flex items-center gap-3 shadow-lg shadow-brand-violet/5">
              <div className="w-2 h-2 rounded-full bg-brand-violet animate-pulse"></div>
-             {import.meta.env.VITE_API_URL || 'http://localhost:8000/api'}
+             {import.meta.env.VITE_API_URL || 'https://ai-research-assistant-ijfa.onrender.com/api'}
           </div>
         </SettingsCard>
 
