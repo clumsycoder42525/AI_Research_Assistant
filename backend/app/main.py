@@ -26,17 +26,11 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS configuration
-ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://ai-research-assistant-ruddy.vercel.app",
-]
-
+# CORS configuration - Permissive for Guest Access
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
