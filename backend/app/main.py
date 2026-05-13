@@ -44,4 +44,8 @@ app.include_router(scholar.router, prefix="/api/scholar", tags=["scholar"])
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the Vedanta AI Research Assistant API"}
+    return {"message": "Vedanta AI API is Online", "status": "ok"}
+
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "version": "2.0.1"}
