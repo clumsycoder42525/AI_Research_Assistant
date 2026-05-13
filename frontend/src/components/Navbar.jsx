@@ -78,53 +78,17 @@ const Navbar = () => {
 
       {/* User Actions */}
       <div className="flex items-center gap-4">
-        {!localStorage.getItem('token') ? (
-          <button 
-            onClick={() => navigate('/auth')}
-            className="px-6 py-2.5 rounded-xl bg-brand-violet text-white font-black text-[10px] uppercase tracking-widest hover:bg-brand-violet/90 transition-all shadow-lg shadow-brand-violet/20"
-          >
-            Login
-          </button>
-        ) : (
-          <div className="relative">
-            <button 
-              onClick={() => setShowUserMenu(!showUserMenu)}
-              className="flex items-center gap-2 p-1.5 rounded-2xl border border-white/[0.08] bg-white/[0.04] hover:bg-white/[0.08] transition-all shadow-sm group"
-            >
-              <div className="w-9 h-9 rounded-xl bg-brand-violet text-white flex items-center justify-center shadow-md shadow-brand-violet/20 group-hover:rotate-6 transition-transform">
-                <User size={18} />
-              </div>
-              <div className="hidden sm:block text-left px-1">
-                <p className="text-xs font-black text-brand-gray-primary uppercase tracking-widest">{username}</p>
-              </div>
-              <ChevronDown size={14} className={`text-slate-400 dark:text-slate-500 mr-2 transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
-            </button>
-
-            <AnimatePresence>
-              {showUserMenu && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute right-0 mt-3 w-56 bg-[#0F172A]/90 border border-white/[0.08] rounded-[24px] shadow-2xl p-2 overflow-hidden z-[110] backdrop-blur-3xl"
-                >
-                  <div className="p-3 mb-2 border-b border-white/[0.06]">
-                    <p className="text-xs font-bold text-brand-gray-muted uppercase tracking-widest pl-1">Primary Account</p>
-                  </div>
-                  <button onClick={() => navigate('/settings')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/[0.04] text-sm font-bold text-brand-gray-secondary transition-all">
-                    <Settings size={18} /> Settings
-                  </button>
-                  <button 
-                    onClick={handleLogout}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-500/10 text-sm font-bold text-red-500 transition-all mt-1"
-                  >
-                    <LogOut size={18} /> Disconnect
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+        <button 
+          onClick={() => navigate('/settings')}
+          className="flex items-center gap-2 p-1.5 rounded-2xl border border-white/[0.08] bg-white/[0.04] hover:bg-white/[0.08] transition-all shadow-sm group"
+        >
+          <div className="w-9 h-9 rounded-xl bg-brand-violet/10 text-brand-violet flex items-center justify-center group-hover:rotate-6 transition-transform">
+            <Settings size={18} />
           </div>
-        )}
+          <div className="hidden sm:block text-left px-1">
+            <p className="text-xs font-black text-brand-gray-primary uppercase tracking-widest">Settings</p>
+          </div>
+        </button>
       </div>
     </nav>
   );

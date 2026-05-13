@@ -16,14 +16,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import BackgroundElements from './components/BackgroundElements';
 
-const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    return <Navigate to="/auth" replace />;
-  }
-  return children;
-};
-
 function App() {
   return (
     <ThemeProvider>
@@ -31,49 +23,31 @@ function App() {
         <div className="relative flex flex-col w-full min-h-screen bg-[#0B0F1A] text-brand-gray-primary selection:bg-brand-violet/20 selection:text-brand-violet transition-colors duration-500 overflow-x-hidden">
           <BackgroundElements />
           
-          <Routes>
-            {/* Public Auth Route */}
-            <Route path="/auth" element={<Auth />} />
-
-            {/* Public Landing Page */}
-            <Route path="/" element={
-              <>
-                <Navbar />
-                <main className="flex-1 relative z-10 w-full pt-20">
-                  <Home />
-                </main>
-              </>
-            } />
-
-            {/* Protected Main Routes */}
-            <Route path="/*" element={
-              <ProtectedRoute>
-                <ErrorBoundary>
-                  <Navbar />
-                  <main className="flex-1 relative z-10 w-full pt-20">
-                    <AnimatePresence mode="wait">
-                      <Routes>
-                        <Route path="/research" element={<ScholarSahayak />} />
-                        <Route path="/detection" element={<AIDetection />} />
-                        <Route path="/paraphraser" element={<Paraphrasing />} />
-                        <Route path="/chat" element={<Chatbot />} />
-                        <Route path="/history" element={<History />} />
-                        <Route path="/settings" element={<Settings />} />
-                        <Route path="/docs" element={<DocsPage />} />
-                        <Route path="/status" element={<StatusPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                        
-                        {/* Aliases for compatibility */}
-                        <Route path="/scholar" element={<Navigate to="/research" replace />} />
-                        <Route path="/detect" element={<Navigate to="/detection" replace />} />
-                        <Route path="/paraphrase" element={<Navigate to="/paraphraser" replace />} />
-                      </Routes>
-                    </AnimatePresence>
-                  </main>
-                </ErrorBoundary>
-              </ProtectedRoute>
-            } />
-          </Routes>
+          <Navbar />
+          <main className="flex-1 relative z-10 w-full pt-20">
+            <ErrorBoundary>
+              <AnimatePresence mode="wait">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/research" element={<ScholarSahayak />} />
+                  <Route path="/detection" element={<AIDetection />} />
+                  <Route path="/paraphraser" element={<Paraphrasing />} />
+                  <Route path="/chat" element={<Chatbot />} />
+                  <Route path="/history" element={<History />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/docs" element={<DocsPage />} />
+                  <Route path="/status" element={<StatusPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  
+                  {/* Aliases for compatibility */}
+                  <Route path="/scholar" element={<Navigate to="/research" replace />} />
+                  <Route path="/detect" element={<Navigate to="/detection" replace />} />
+                  <Route path="/paraphrase" element={<Navigate to="/paraphraser" replace />} />
+                  <Route path="/auth" element={<Navigate to="/" replace />} />
+                </Routes>
+              </AnimatePresence>
+            </ErrorBoundary>
+          </main>
         </div>
       </Router>
     </ThemeProvider>

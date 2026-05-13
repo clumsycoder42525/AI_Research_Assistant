@@ -85,23 +85,9 @@ const Sidebar = () => {
         <NavItem to="/settings" icon={Settings} label="Settings" />
       </nav>
 
-      <div className="p-4 mt-auto space-y-4">
+      <div className="p-4 mt-auto">
         <div className="p-4 rounded-xl bg-gradient-to-br from-slate-800/80 to-navy-900 border border-slate-700/50 flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-brand-cyan/20 flex items-center justify-center border border-brand-cyan/50">
-                <span className="text-brand-cyan font-bold uppercase">{username[0]}</span>
-              </div>
-              <div className="flex-1 overflow-hidden">
-                <p className="text-sm font-medium text-slate-200 truncate">{username}</p>
-                <p className="text-xs text-brand-neon font-mono">Premium Access</p>
-              </div>
-          </div>
-          <button 
-            onClick={handleLogout}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors text-sm font-medium border border-red-500/20"
-          >
-            <LogOut size={16} /> Disconnect
-          </button>
+          <p className="text-[10px] font-black text-brand-gray-muted uppercase tracking-[0.2em] text-center">Neural Link v4.0 Active</p>
         </div>
       </div>
     </motion.aside>
